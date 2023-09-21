@@ -25,8 +25,50 @@ namespace FilmProject_VerzioKezelt
             Feladat02();
             Feladat03();
             Feladat04();
+            Feladat07();
 
             Console.ReadKey();
+        }
+
+        private static void Feladat07()
+        {
+            Console.WriteLine($"A leggyakoribb műfaj a(z) {GetLeggyakoribbMufaj()}");
+        }
+
+        private static object GetLeggyakoribbMufaj()
+        {
+            Dictionary<string, int> mufajokGyakorisaga = new Dictionary<string, int>();
+            foreach (var film in filmek)
+            {
+                foreach (var mufaj in film.Mufaj)
+                {
+                    if (!mufajokGyakorisaga.ContainsKey(mufaj))
+                    {
+                        mufajokGyakorisaga.Add(mufaj, 1);
+                    }
+                    else
+                    {
+                        mufajokGyakorisaga[mufaj] += 1;
+                    }
+                }
+            }
+            /*
+            foreach (KeyValuePair<string, int> mufaj in mufajokGyakorisaga)
+            {
+                Console.WriteLine($"{mufaj.Key} - {mufaj.Value}");
+            }
+            */
+            int leggyakoribbDarab = int.MinValue;
+            string leggyakoribbMufaj = "";
+            foreach (var mufaj in mufajokGyakorisaga)
+            {
+                if (mufaj.Value > leggyakoribbDarab)
+                {
+                    leggyakoribbDarab = mufaj.Value;
+                    leggyakoribbMufaj = mufaj.Key;
+                }
+            }
+            return leggyakoribbMufaj;
         }
 
         private static void Feladat04()
