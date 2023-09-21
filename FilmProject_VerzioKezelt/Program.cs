@@ -10,6 +10,7 @@ namespace FilmProject_VerzioKezelt
     {
         static void Main(string[] args)
         {
+            //Halasi-Czalbert Tibor
         }
     }
 }
